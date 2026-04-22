@@ -1,5 +1,13 @@
 replicaCount: 2
 
+serviceAccount:
+  create: true
+  annotations: {}
+  name: ""
+
+podSecurityContext: {}
+securityContext: {}
+
 image:
   repository: bittush8789/source-code-analyzer
   pullPolicy: IfNotPresent

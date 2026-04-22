@@ -1,0 +1,12 @@
+[allowlist]
+description = "Allowlist for project files"
+paths = [
+    '''app/requirements.txt''',
+    '''docs/ARCHITECTURE.md'''
+]
+
+[rules]
+[[rules]]
+description = "OpenAI API Key"
+regex = '''sk-[a-zA-Z0-9]{48}'''
+tags = ["key", "openai"]

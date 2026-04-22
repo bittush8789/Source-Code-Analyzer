@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: source-code-analyzer-frontend
+  namespace: source-code-analyzer
+  labels:
+    app: source-code-analyzer-frontend
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: source-code-analyzer-frontend
+  template:
+    metadata:
+      labels:
+        app: source-code-analyzer-frontend
+    spec:
+      containers:
+      - name: frontend
+        image: bittush8789/source-code-analyzer:latest
+        ports:
+        - containerPort: 8080
+        resources:
+          requests:
+            cpu: "100m"
+            memory: "256Mi"
+          limits:
+            cpu: "250m"
+            memory: "512Mi"

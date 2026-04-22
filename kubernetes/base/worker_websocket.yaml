@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: source-code-analyzer-worker
+  namespace: source-code-analyzer
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: worker
+  template:
+    metadata:
+      labels:
+        app: worker
+    spec:
+      containers:
+      - name: worker
+        image: bittush8789/source-code-analyzer:latest
+        command: ["python", "app.py"] # Placeholder for background tasks
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: source-code-analyzer-websocket
+  namespace: source-code-analyzer
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: websocket
+  template:
+    metadata:
+      labels:
+        app: websocket
+    spec:
+      containers:
+      - name: websocket
+        image: bittush8789/source-code-analyzer:latest
+        ports:
+        - containerPort: 8080

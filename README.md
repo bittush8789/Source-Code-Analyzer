@@ -3,12 +3,15 @@
 This repository contains a production-grade deployment system for the Realtime Source Code Analyzer, implementing DevOps, DevSecOps, and LLMOps best practices.
 
 ## 🏗 Architecture Overview
-- **Backend**: Flask + LangChain + OpenAI
-- **Vector DB**: ChromaDB (Persisted to Disk/Volume)
-- **Infrastructure**: AWS EKS (Managed Node Groups with Spot Instances)
-- **CI/CD**: GitHub Actions
-- **Security**: Trivy, Semgrep, Gitleaks, Snyk
-- **Observability**: Prometheus, Grafana, CloudWatch
+The system follows a Retrieval-Augmented Generation (RAG) pattern, leveraging LangChain for orchestration and AWS EKS for scalable deployment.
+
+**Detailed Architecture Documentation**: [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md)
+
+### 🗺 System Map
+- **Frontend/Backend**: Flask-based web application.
+- **AI/LLM**: OpenAI GPT-3.5/4 models via LangChain.
+- **Vector Storage**: ChromaDB for high-performance code snippet retrieval.
+- **Infrastructure**: AWS EKS with managed node groups and Terraform.
 
 ## 📁 Project Structure
 ```text

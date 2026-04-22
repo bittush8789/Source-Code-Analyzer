@@ -8,7 +8,7 @@ load_dotenv()
 OPENAI_API_KEY = os.environ.get('OPENAI_API_KEY')
 os.environ["OPENAI_API_KEY"] = OPENAI_API_KEY
 
-# url = "https://github.com/entbappy/End-to-end-Medical-Chatbot-Generative-AI"
+# url = "https://github.com/bittush8789/End-to-end-Medical-Chatbot-Generative-AI"
 
 # repo_ingestion(url)
 

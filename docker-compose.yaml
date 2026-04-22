@@ -1,0 +1,23 @@
+version: '3.8'
+
+services:
+  analyzer-app:
+    build:
+      context: ./app
+      dockerfile: Dockerfile
+    image: source-code-analyzer:latest
+    container_name: source-code-analyzer
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./app/db:/app/db
+      - ./app/repo:/app/repo
+    env_file:
+      - .env
+    environment:
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+    restart: always
+
+networks:
+  default:
+    name: analyzer-network

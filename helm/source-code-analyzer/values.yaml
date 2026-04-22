@@ -1,0 +1,28 @@
+replicaCount: 2
+
+image:
+  repository: bittush8789/source-code-analyzer
+  pullPolicy: IfNotPresent
+  tag: "latest"
+
+service:
+  type: ClusterIP
+  port: 80
+
+resources:
+  limits:
+    cpu: 500m
+    memory: 1Gi
+  requests:
+    cpu: 250m
+    memory: 512Mi
+
+autoscaling:
+  enabled: true
+  minReplicas: 2
+  maxReplicas: 10
+  targetCPUUtilizationPercentage: 70
+
+nodeSelector: {}
+tolerations: []
+affinity: {}

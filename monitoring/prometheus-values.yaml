@@ -1,0 +1,21 @@
+server:
+  persistentVolume:
+    size: 10Gi
+  retention: 15d
+
+alertmanager:
+  enabled: true
+  persistentVolume:
+    size: 2Gi
+
+kubeStateMetrics:
+  enabled: true
+
+nodeExporter:
+  enabled: true
+
+extraScrapeConfigs: |
+  - job_name: 'source-code-analyzer'
+    metrics_path: '/metrics'
+    static_configs:
+      - targets: ['source-code-analyzer-svc.source-code-analyzer.svc.cluster.local:80']

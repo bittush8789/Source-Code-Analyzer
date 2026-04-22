@@ -3,6 +3,8 @@ from src.helper import load_embedding, repo_ingestion
 from dotenv import load_dotenv
 import os
 from flask import Flask, request, jsonify, render_template
+import time
+import logging
 from langchain.chat_models import ChatOpenAI
 from langchain.chains import ConversationalRetrievalChain
 from langchain.memory import ConversationSummaryMemory
@@ -12,7 +14,9 @@ app = Flask(__name__)
 load_dotenv()
 
 OPENAI_API_KEY = os.environ.get('OPENAI_API_KEY')
-os.environ["OPENAI_API_KEY"] = OPENAI_API_KEY
+# LLMOps Logging Setup
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger("LLMOps")
 
 
 embeddings = load_embedding()
@@ -59,7 +63,14 @@ def chat():
     if input == "clear":
         os.system("rm -rf repo")
 
+    start_time = time.time()
+    
+    # LLM Call with latency tracking
     result = qa(input)
+    
+    latency = time.time() - start_time
+    logger.info(f"LLM Request - Input: {input[:50]}... | Latency: {latency:.2f}s")
+    
     print(result['answer'])
     return str(result["answer"])
 
